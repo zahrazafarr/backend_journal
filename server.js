@@ -1,11 +1,13 @@
 //Dependencies
 const express = require('express');
 const mongoose = require ('mongoose');
+const cors = require('cors')
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
 
 app.use(express.json());// returns middleware that only parses JSON
+app.use(cors())
 
 //use public folder for static assets
 app.use(express.static('public'));
@@ -30,6 +32,7 @@ app.get('/carely' , (req, res) => {
     res.json(allJournal)
   })
 })
+
 
 app.post('/carely', (req, res) => {
   Journal.create(req.body, (err, postJournal) => {
