@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const carelySchema = new mongoose.Schema({
     date: String,
     title: String,
@@ -14,4 +15,5 @@ const carelySchema = new mongoose.Schema({
     moment: Boolean,
 })
 const Journal = mongoose.model('Journal', carelySchema)
+
 module.exports = Journal
