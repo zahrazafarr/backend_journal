@@ -10,10 +10,8 @@ app.use(express.json());// returns middleware that only parses JSON - may or may
 //use public folder for static assets
 app.use(express.static('public'));
 
-
 //Port
 const PORT = process.env.PORT
-
 
 //Database
 // How to connect to the database either via heroku or locally
@@ -27,31 +25,28 @@ const Journal = require('./models/entry.js')
 
 // Routes
 
-  app.get('/carely' , (req, res) => {
-    Journal.find({}, (err, allJournal) => {
-      res.json(allJournal)
-    })
+app.get('/carely' , (req, res) => {
+  Journal.find({}, (err, allJournal) => {
+    res.json(allJournal)
   })
+})
 
-  app.post('/carely', (req, res) => {
-    Journal.create(req.body, (err, postJournal) => {
-      res.json(postJournal)
-    })
+app.post('/carely', (req, res) => {
+  Journal.create(req.body, (err, postJournal) => {
+    res.json(postJournal)
   })
+})
 
-  app.put('/carely/:id', (req, res) => {
-    Journal.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedJournal) => { res.json(updatedJournal)
-    })
+app.put('/carely/:id', (req, res) => {
+  Journal.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedJournal) => { res.json(updatedJournal)
   })
+})
 
 
-  app.delete('/carely/:id', (req, res) => {
-    Journal.findByIdAndRemove(req.params.id, (err, deletedJournal) => { res.json(deletedJournal)
-    })
+app.delete('/carely/:id', (req, res) => {
+  Journal.findByIdAndRemove(req.params.id, (err, deletedJournal) => { res.json(deletedJournal)
   })
-
-
-
+})
 
 
 
