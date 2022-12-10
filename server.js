@@ -21,6 +21,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 // Schema
 const Journal = require('./models/entry.js')
+const Prompts = require('./models/prompts.js')
 
 
 //Middleware--------------------------------------------------
@@ -33,6 +34,17 @@ app.get('/carely' , (req, res) => {
   })
 })
 
+app.get('/prompts' , (req, res) => {
+  Prompts.find({}, (err, allPrompts) => {
+    res.json(allPrompts)
+  })
+})
+
+app.post('/prompts', (req, res) => {
+  Prompts.create(req.body, (err, postPrompt) => {
+    res.json(postPrompt)
+  })
+})
 
 app.post('/carely', (req, res) => {
   Journal.create(req.body, (err, postJournal) => {
